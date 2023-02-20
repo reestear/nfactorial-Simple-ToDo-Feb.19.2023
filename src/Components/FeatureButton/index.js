@@ -1,8 +1,8 @@
 import React from 'react'
 import './styles.css'
 
-export default function FeatureButton() {
-  return (
-    <button className='btn'>Some</button>
-  )
+export default function FeatureButton({title, filterUpdate}) {
+    return (
+        <button className='btn' onClick={filterUpdate}>{title}</button>
+    )
 }
