@@ -14,6 +14,7 @@ function App() {
   const [status, setStatus] = useState();
   const [mounted, setMounted] = useState(true);
   const [Wind, setWind] = useState('To Do');
+  const [text, setText] = useState('');
   
   useEffect(() => {
 
@@ -26,8 +27,8 @@ function App() {
     else setFilteredTodos(temp.filter((todo) => todo.active === 'active'));
   }, [mounted])
 
-  console.log(todos);
-  console.log(filteredTodos);
+  // console.log(todos);
+  // console.log(filteredTodos);
 
   function showActive(){
     console.log('active clicked')
@@ -87,6 +88,29 @@ function App() {
     setFilteredTodos(todos.filter((item) => item.active === status))
   }
 
+  function handleEnter(e){
+    if(e.key === 'Enter') AddToDo();
+  }
+
+  function AddToDo(){
+    console.log('add to do has been pushed')
+    const todo = {
+        id: todos.length,
+        active: 'active',
+        text: text,
+        done: false
+    }
+    setText('')
+    let new_todos = [todo, ...todos];
+    setTodos(new_todos);
+    setFilteredTodos(new_todos.filter((item) => item.active === status))
+  }
+
+  function onChangeText(e){
+    setText(e.target.value);
+    console.log(text)
+  }
+
   return (
     <div className="App">
       <div className='Top'>
@@ -103,7 +127,7 @@ function App() {
           </div>
         </div>
         
-        <NewTodo></NewTodo>
+        <NewTodo onChangeText={onChangeText} text={text} AddToDo={AddToDo} handleEnter={handleEnter}></NewTodo>
 
       </div>
 

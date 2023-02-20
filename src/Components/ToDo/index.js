@@ -30,7 +30,7 @@ export default function ToDo({id, active, text, done, MoveToTrash, DeleteForever
             </label>
         </div>
 
-        <div className='Specs' style={{display: SpecsDisplay}}>
+        <div className='Specs' style={{display: SpecsDisplay, marginBottom: (active === 'done') ? '0px' : '20px'}}>
             <div className='Specs-First' style={{display: SpecsFirst}}>
                 <button onClick={() => {MoveToTrash(id); setSpecsDisplay('none')}} className='Trash SpecsButton'>
                     <img alt='trash' src={TRASH_IMG}></img>
