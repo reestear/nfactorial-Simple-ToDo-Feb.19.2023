@@ -121,9 +121,9 @@ function App() {
           </div>
 
           <div className='Feature-Buttons pd13'>
-            <FeatureButton title = "To Do" filterUpdate = {showActive}></FeatureButton>
-            <FeatureButton title = "Done" filterUpdate = {showDone}></FeatureButton>
-            <FeatureButton title = "Trash" filterUpdate = {showTrash}></FeatureButton>
+            <FeatureButton title = "To Do" color = {(status === 'active') ? true : false} filterUpdate = {showActive}></FeatureButton>
+            <FeatureButton title = "Done" color = {(status === 'done') ? true : false}  filterUpdate = {showDone}></FeatureButton>
+            <FeatureButton title = "Trash" color = {(status === 'trash') ? true : false}  filterUpdate = {showTrash}></FeatureButton>
           </div>
         </div>
         

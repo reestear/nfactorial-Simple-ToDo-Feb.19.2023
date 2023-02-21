@@ -1,7 +1,7 @@
 export default [
     {
         id: 0,
-        active: 'done',
+        active: 'active',
         text: 'Write Essay',
         done: false
     },
@@ -13,7 +13,7 @@ export default [
     },
     {
         id: 2,
-        active: 'trash',
+        active: 'active',
         text: 'Buy One Way Tickets to San Fransico',
         done: false
     },
@@ -25,7 +25,7 @@ export default [
     },
     {
         id: 4,
-        active: 'done',
+        active: 'active',
         text: 'Buy Groceries',
         done: false
     }
