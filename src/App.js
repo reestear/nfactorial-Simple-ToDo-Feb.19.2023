@@ -13,25 +13,40 @@ function App() {
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [status, setStatus] = useState();
   const [mounted, setMounted] = useState(true);
-  const [Wind, setWind] = useState('To Do');
-  const [text, setText] = useState('');
+  const [Wind, setWind] = useState();
+  const [text, setText] = useState();
   
   useEffect(() => {
+    // const temp = JSON.parse(localStorage.getItem('arr'));
+    setTodos(JSON.parse(localStorage.getItem('arr')) || Todos);
+    setFilteredTodos(JSON.parse(localStorage.getItem('filtered_arr')) || Todos);
+    setStatus(JSON.parse(localStorage.getItem('stat')) || 'active');
+    setWind(JSON.parse(localStorage.getItem('wind')) || 'To Do');
+    setText(JSON.parse(localStorage.getItem('txt')) || '');
 
-    const temp = JSON.parse(localStorage.getItem('arr'));
-    setTodos(temp || Todos);
+    // setStatus('active')
 
-    setStatus('active')
+    // if(temp == null) setFilteredTodos(Todos.filter((todo) => todo.active === 'active'));
+    // else setFilteredTodos(temp.filter((todo) => todo.active === 'active'));
 
-    if(temp == null) setFilteredTodos(Todos.filter((todo) => todo.active === 'active'));
-    else setFilteredTodos(temp.filter((todo) => todo.active === 'active'));
+    // if(JSON.parse(localStorage.getItem('arr'))) setTodos(JSON.parse(localStorage.getItem('arr')));
+    // if(JSON.parse(localStorage.getItem('filtered_arr'))) setFilteredTodos(JSON.parse(localStorage.getItem('filtered_arr')));
   }, [mounted])
+
+  useEffect(() => {
+    console.log('again')
+    localStorage.setItem('arr', JSON.stringify(todos));
+    localStorage.setItem('filtered_arr', JSON.stringify(filteredTodos));
+    localStorage.setItem('stat', JSON.stringify(status));
+    localStorage.setItem('wind', JSON.stringify(Wind));
+    localStorage.setItem('txt', JSON.stringify(text));
+  }, [todos, filteredTodos, status, Wind, text])
 
   // console.log(todos);
   // console.log(filteredTodos);
 
   function showActive(){
-    console.log('active clicked')
+    // console.log('active clicked')
 
     setFilteredTodos(todos.filter(todo => todo.active === 'active'));
     setStatus('active')
@@ -39,7 +54,7 @@ function App() {
   }
 
   function showDone(){
-    console.log('done clicked')
+    // console.log('done clicked')
 
     setFilteredTodos(todos.filter(todo => todo.active === 'done'));
     setStatus('done')
@@ -47,7 +62,7 @@ function App() {
   }
 
   function showTrash(){
-    console.log('trash clicked')
+    // console.log('trash clicked')
 
     setFilteredTodos(todos.filter(todo => todo.active === 'trash'));
     setStatus('trash')
@@ -71,7 +86,7 @@ function App() {
   }
 
   function MoveBack(id){
-    console.log('move back is pressed')
+    // console.log('move back is pressed')
     const todo = todos.find((item) => item.id === id);
     todo.active = (todo.done) ? 'done' : 'active';
 
@@ -79,7 +94,7 @@ function App() {
   }
 
   function handleCheck(id){
-    console.log('chackbox is pressed')
+    // console.log('chackbox is pressed')
     const todo = todos.find((item) => item.id === id);
     todo.done = !todo.done;
     if(todo.active === 'active') todo.active = 'done';
@@ -93,7 +108,9 @@ function App() {
   }
 
   function AddToDo(){
-    console.log('add to do has been pushed')
+    // console.log('add to do has been pushed')
+    if(text === '') return;
+
     const todo = {
         id: todos.length,
         active: 'active',
@@ -108,7 +125,7 @@ function App() {
 
   function onChangeText(e){
     setText(e.target.value);
-    console.log(text)
+    // console.log(text)
   }
 
   return (
