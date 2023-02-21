@@ -130,28 +130,32 @@ function App() {
 
   return (
     <div className="App">
-      <div className='Top'>
-        <div>
-          <div className='Header pd13'>
-            <h1>Simple To Do List</h1>
-            <p>Today is awesome day. The weather is awesome, you are awesome too!</p>
-          </div>
+      <div className='Main'>
+        <div className='Top'>
+          <div>
+            <div className='Header pd13'>
+              <h1>Simple To Do List</h1>
+              <p>Today is awesome day. The weather is awesome, you are awesome too!</p>
+            </div>
 
-          <div className='Feature-Buttons pd13'>
-            <FeatureButton title = "To Do" color = {(status === 'active') ? true : false} filterUpdate = {showActive}></FeatureButton>
-            <FeatureButton title = "Done" color = {(status === 'done') ? true : false}  filterUpdate = {showDone}></FeatureButton>
-            <FeatureButton title = "Trash" color = {(status === 'trash') ? true : false}  filterUpdate = {showTrash}></FeatureButton>
+            <div className='Feature-Buttons pd13'>
+              <FeatureButton title = "To Do" color = {(status === 'active') ? true : false} filterUpdate = {showActive}></FeatureButton>
+              <FeatureButton title = "Done" color = {(status === 'done') ? true : false}  filterUpdate = {showDone}></FeatureButton>
+              <FeatureButton title = "Trash" color = {(status === 'trash') ? true : false}  filterUpdate = {showTrash}></FeatureButton>
+            </div>
           </div>
+          
+          <NewTodo onChangeText={onChangeText} text={text} AddToDo={AddToDo} handleEnter={handleEnter}></NewTodo>
+
         </div>
-        
-        <NewTodo onChangeText={onChangeText} text={text} AddToDo={AddToDo} handleEnter={handleEnter}></NewTodo>
 
+        <h2 className='pd13' style={{paddingTop: '12px'}}>{Wind}</h2>
+        <div className='pd13' style={{width: '94%', height: '3px', backgroundColor: '#151517', opacity: '0.2', marginBottom: '24px', marginTop: '12px'}}></div>
+
+        <ToDoList filteredToDos = {filteredTodos} MoveToTrash={MoveToTrash} DeleteForever={DeleteForever} MoveBack={MoveBack} handleCheck={handleCheck}></ToDoList>
       </div>
-
-      <h2 className='pd13' style={{paddingTop: '12px'}}>{Wind}</h2>
-      <div className='pd13' style={{width: '94%', height: '3px', backgroundColor: '#151517', opacity: '0.2', marginBottom: '24px', marginTop: '12px'}}></div>
-
-      <ToDoList filteredToDos = {filteredTodos} MoveToTrash={MoveToTrash} DeleteForever={DeleteForever} MoveBack={MoveBack} handleCheck={handleCheck}></ToDoList>
+      
+      <p className='pd13' style={{marginBottom: '50px'}}>Made with 🖤 at nFactorial in 2022.</p>
 
     </div>
   );
